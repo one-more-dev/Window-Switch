@@ -13,9 +13,9 @@
 			width: 30%;
 			margin: auto;
 			box-sizing: border-box;
-			background-color: white;
+			background-color: orange;
 		}
-		.tabs h1{
+		.main_window h1{
 			display: inline-block;
 			width: 50%;
 			padding: 0 10px;
@@ -28,7 +28,6 @@
 			height: 115px;
 			box-sizing: border-box;
 			padding: 15px;
-			background-color: orange;
 			text-align: center;
 			text-transform: uppercase;
 			font-size: 1.2em;
@@ -44,16 +43,34 @@
 
 <body>
 
-	<div class="main_window">
-		<div class="tabs">
-			<h1 class="tab_pt">Português</h1><h1 class="tab_en">English</h1>
-		</div>
-		<div class="texto">
-			<p class="pt">Este texto está em português!</p>
-			<p class="en">This text is in english!</p>
-		</div>
+	<div class="main_window" data-window>
+		<h1 data-tab="pt">Português</h1><h1 data-tab="en">English</h1>
+
+		<div class="texto" data-text="pt"><p>Este texto está em português!</p></div>
+		<div class="texto" data-text="en"></p>This text is in english!</p></div>
 	</div>
 
+
+
+<script type="text/javascript">
+	let abas = document.querySelectorAll("[data-tab]");
+	let textos = document.querySelectorAll("[data-text]");
+
+	function currentTab(thistab=0){
+		abas.forEach(tb => tb.style.backgroundColor = "orange");
+		abas[thistab].style.backgroundColor = "white";
+		textos.forEach(txt => txt.style.display = "none");
+		textos[thistab].style.display = "inherit";
+	}
+
+	for(var ab = 0; ab < abas.length; ab++){
+		const n = ab;
+		abas[n].addEventListener("click", () => currentTab(n));
+		abas[n].addEventListener("click", () => currentTab(n));
+	}
+
+	currentTab(0);
+</script>
 </body>
 
 </html>
